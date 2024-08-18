@@ -7,7 +7,8 @@ This web application offers a comprehensive and personalized food recommendation
 </p>
 
 ---
-
+## Preview
+- [NYOM NYOM](https://nyomnyom.streamlit.app)
 ## Functionalities
 - User Authentication: Secure login and sign-up with MongoDB Atlas Cloud Database storing user information, including passwords and favorite meals.
 - Database Operations: Add, modify, and delete information within the database.
