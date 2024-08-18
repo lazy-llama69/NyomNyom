@@ -16,10 +16,11 @@ def get_mongo_client():
 @st.cache_data
 def load_food_data():
     # Load the food data only once per session
-    food_data = pd.read_csv("input/recipes.csv")
+    current_dir = os.path.dirname(__file__)  # Get the directory of the current file
+    file_path = os.path.join(current_dir, "input", "recipes.csv")
+    food_data = pd.read_csv(file_path)
     food_data.dropna(inplace=True)
     return food_data
-
 
 
 def main():
@@ -35,13 +36,16 @@ def main():
 
     # Load the food and ratings data only once and store them in session state
     if 'food_data' not in st.session_state:
-        st.session_state.food_data = pd.read_csv("input/recipes.csv")
-        st.session_state.food_data.dropna(inplace=True)
+        st.session_state.food_data = load_food_data()
     # logging.info(f"Food data loaded in {time.time() - start_time:.2f} seconds")
     food = st.session_state.food_data
 
     # Directory where images are stored
-    image_directory = 'input/Food Images'
+    # Get the directory of the current script
+    current_dir = os.path.dirname(__file__)
+
+    # Construct the absolute path to the image directory
+    image_directory = os.path.join(current_dir, 'input', 'Food Images')
 
     # Tabs
     tab1, tab2, tab3, tab4, tab5 = st.tabs(["Home", "Random", "Favourites", "GO CRAY CRAY", "Cuisines"])
