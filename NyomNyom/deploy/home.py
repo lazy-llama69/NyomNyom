@@ -219,7 +219,9 @@ def display_home_tab(collection, image_directory, food):
 
 
 def load_precomputed_recommendations():
-    with open("precomputed_recommendations.json", "r") as f:
+    current_dir = os.path.dirname(__file__)  # Get the directory of the current file
+    file_path = os.path.join(current_dir, "precomputed_recommendations.json")
+    with open(file_path, "r") as f:
         return json.load(f)
 
 
